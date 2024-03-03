@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //  promises are mainly used to execute the set of statements , based on the resolve or 
+    // reject state
+    // if resolve then it will execute the statements in the .then() block
+    // if reject then it will execute the statements in .catch() block
+    
+    // To create a promise use the promise class 
+    // var prom = new Promise((resolve,reject)=>{
+
+    // });
+
+    var a = parseInt(prompt("Enter age"));
+    
+    var prom = new Promise((resolve,reject)=>{
+        if(a<18){
+            reject("Not eligible");
+        }else{
+            resolve("eligible");
+        }
+    })
+
+    prom.then((res)=>{
+        console.log(res);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+    .finally(()=>{
+        console.log("Inside finally with promise");
+    })
+
+    // The statements iside the callback function of Promise constructor are executed only
+    // when we use the statement prom.
+    // .then() executes the set of statemtns incase if the promise is success or resoleve
+    // .catch() is executed in case promise is rejected
+    // finally is always executed
+
+    // also when ever we send a request to any api using axios or ajax , they return a promise
+    // hence we use
+    // axious.get("/dfdfg").then(()=>{}).catch((err)=>{})
+    // Similarly the fetch method also returns a promise
+
+    // hence we use fetch("/wesdrf").then().catch()
+
+</script>
+</html>

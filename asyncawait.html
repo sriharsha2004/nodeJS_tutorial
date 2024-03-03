@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async And Await</title>
+</head>
+<body>
+
+</body>
+<script>
+    // By default javascript is asychronous in nature 
+    // i.e it executes all the statemnts at a time , it doesnt wait for the other statemtns 
+    // to get executed
+
+    // But their are certain cases where we need synchroisation
+    // Like only after the user is validated, then only we should decide whether to show
+    // the product details page or not
+    // that means should stop execution of all the statemtne till we get the result about the user
+
+    // To make it sycnhronous we use await keyword
+    // this keyword allows to execute the statemtns only after the exectuoion of particular
+    // statements
+    // When ever we use await keyword the corresponding funciton must be marked woth async keyword
+
+    // But from ECMA 20 and later verions we need not use async before function
+    // eg:
+    
+    // var prom = new Promise((res,rej)=>{
+    //     setTimeout(()=>{
+    //         res("Middle")
+    //     },2000)
+    // })
+
+    // var m=()=>{
+    //     console.log("Start");
+    //     prom.then((res)=>{
+    //         console.log(res);
+    //     })
+    //     console.log("End");
+    // }
+    // m();
+
+    // order of statemtsn is start,end ,middle
+    // Because js is asynchronous by default , it never stops its execution for any one,
+    // When the contorl moves to the promise the control automatically continuos its
+    // execution and will not stop for the promise to get it executed
+
+    // implementing Async and await
+
+    var prom = new Promise((res,rej)=>{
+        setTimeout(()=>{
+            res("Middle")
+        },2000)
+    })
+
+    var m=async ()=>{
+        console.log("Start");
+        await prom.then((res)=>{
+            console.log(res);
+        })
+        console.log("End");
+    }
+    m();
+</script>
+</html>

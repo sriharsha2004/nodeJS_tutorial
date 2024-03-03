@@ -1,0 +1,93 @@
+sessions are mainly used to make the server remember the client
+when ever a client requests the server , the server responds back to user and this request is
+known as http request . 
+In an http request once the server responds to client , the client and server will forget each
+other , hence the client wants to relogin again with his credentials when he want to relogin within
+short time.
+Hence we implement the session concept where the serrver will be able to remember the user who have 
+logged in previously within short time . 
+Working :
+When ever the user requests the server then the server creates a session and responds back to the 
+user with a cookie .
+Hence when the same user requests the server within The maxAge property , the cookie present 
+with the client  is compared with the session id at the server side , if its same then the 
+server again responds back with a new cookie.
+This process is continues;
+And once the user clicks on logout button then the corresponding cookie associated with the client
+is destroyed , hence the user needs to relogin again . 
+
+Note these cookies will be available in the application tab in console . 
+
+
+inorder to use sessions in express , we need to use npm install express-session
+it has the middleware to handle express sessions.
+Before express-session version 1.5.0 we need to use an addittional module known as 
+cookieparser (npm install cookieparser) and then define the middleware for the cookieparser
+
+But for later versions we need not use this  cookieparser. 
+we can unistall usign (npm unistall cookie-parser)
+
+While defining a session we use a secret property which is mainly used to create a session-id
+and cookie .
+
+A session secret is a key used for encrypting cookies
+
+A data encryption algorithm uses a (secret) key to convert a message into a ciphertext — that is, a
+ scrambled, unreadable version of the message. One can recover the original message from the
+ ciphertext by using a decryption key. In a symmetric encryption algorithm, both the encryption
+ and decryption keys are the same.
+
+ To scramble the message we use this secret parameter.
+
+
+below is the link shows the picture of how server assigns a cookie to the client.
+https://www.cloudflare.com/resources/images/slt3lc6tev37/V9RAG8z5jvFu1c0FUyE5A/5a686114c92664bccef84c32a37a09f3/what_is_a_session_key.png
+
+
+
+Procedure to implement concept of sessions :
+
+for reference refer onlineshoppingapp
+
+install express-session node module.
+Create an object having the info about the session:
+    var sessionConfig = {
+        secret : process.env.MY_SECRET,
+        cookie : {maxAge : 60000}
+    }
+    In this secret is the key using which the data is encrypted . 
+    It is prseent in .env file (check .env file in onlineshoppingapp for reference)
+    maxAge(In milli secconds) indicates the maximum age till which the user is going to be loggeed in.
+    After that when user rquests the server then automatically it will ask the user to give
+    his credentials again.
+
+    Use a middle ware app.use(session(sessionConfig));
+
+    Create a webservice for geting the login status of user .
+    In case if login status is true directly redenr him on to the same page even he refreshes
+    the page 
+    Once the user clicks on logout destroy the session 
+    using destroy.
+
+    In this when ever a client want to request the server , the client gets authenticated and then  
+    the server responds back with the data along  with the sessionId to client ,
+    Later if the user again comes and requests sime other webservice the server again needs to 
+    authenticate the same user , Inorder to avaoid the authentication of samae user again and 
+    again within a specific time known as maxAge , we use sessions concept.
+    In this intially once the user gots authenticated the server provides him the token 
+    or session Id , hence when ever the user again requests the server to provide the webservice
+    the server will not authenticate him again rather it checks whether the user is having 
+    any token or not , if yes it direcctly allows userss to requests else it again authenticates the 
+    user .
+
+
+    Note :
+    Theier are two types of architectures present : SOAP,REST
+    SOAP (service oriented architecture protocal) , This protocol was used in olden days,
+    where when ever the user gets authenticated , all the other users neeeds to wait to send
+    the request to the server .
+
+    REST :
+    This sessions concept is REST (representational state transfer) which is capable of
+    handling multiple requests at a time , it need not make the other users wait for completing a 
+    work.

@@ -1,0 +1,24 @@
+rendering pages by server :
+
+Usually the normal work flow is : 
+When ever user requests the server, the server gets the data from the DB in the form of string (
+    we genrally convert object into string to send the data back to user)
+and when we hit the request (through browser or postman)
+eg : localhost:8081/getstatus
+we get {loggedinstatus : true} (or) productdata object
+And this data is handed over to client , client will take data and present it in the form of page to 
+the user .
+
+Here the concept of server side rendering comes , 
+when the server is getting data from DB,, why not the server it self render the pages, insteard
+of handing over the data to the client side.
+Here for achieving it we use jage/pug templating , and these jade files are genrerally placed into
+the folder called as views folder.
+
+But it is not recommmended that to use this concept , because already server is performing 
+several tasks like handling user requests , getting data from DB .
+If we add one more task of server side rendering pages, then it will give pressure on the server
+and its performance will reduce.
+Hence we hand over the task to clients to do this task.
+
+Refer NIT class of day 21 to understand in clear.(also find clustering,buffering in that)

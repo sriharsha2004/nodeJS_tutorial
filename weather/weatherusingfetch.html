@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wather predictor Fetch</title>
+</head>
+<body>
+    <label for="abc">Enter name of city : </label>
+    <input type="text" name="abc" id="city">
+    <input type="button" value="Get Weather" onclick="method()">
+    <div class="container">
+
+    </div>
+</body>
+<script>
+
+    var container = document.querySelector(".container");
+    var method= async ()=>{
+        var city = document.getElementById("city");
+        await fetch('https://api.openweathermap.org/data/2.5/weather?q='+city.value+'&appid=50a7aa80fa492fa92e874d23ad061374')
+        .then(res => res.json())
+        .then((res)=>{
+            console.log(res);
+             var weatherobj = {
+                "temperature " : res.main.temp,
+                "Max temperature ": res.main.temp_max,
+                "Min temperature " : res.main.temp_min,
+                "humidity  " : res.main.humidity,
+                "pressure  " : res.main.pressure
+            }
+            display(weatherobj);
+        })           
+        .catch((err)=>{
+            alert("Invalid city name")
+        })
+    }
+    var display = (weatherobj) =>{
+        container.innerHTML = ""
+        for(var i in weatherobj){
+            var d = document.createElement("div");
+            var h3 = document.createElement("h3");
+            h3.innerText = i+" : "+weatherobj[i];
+            d.appendChild(h3);
+            container.appendChild(d);
+        }
+    }
+</script>
+</html>

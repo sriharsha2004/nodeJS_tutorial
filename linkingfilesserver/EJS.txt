@@ -1,0 +1,17 @@
+ejs is Embedded Javascript Templating which is mainly used to load dynamic html webpages
+using ejs we can write control statements , other componenets in a ejs page it self
+
+Note : for performing this we need to replace all the html extensions in html pages
+with an ejs extension 
+
+working of ejs:
+It takes the the ejs file into the server and gives the ejs file to the view engine
+which produces the resullting html for the ejs file .
+
+This view engine manages the dynamic content like loops , if statements from the ejs
+file and provides a html page (inspect and see)
+
+we can use handlebars/pugs/ejs for this purpose of templating
+but we are using ejs
+
+use npm install ejs

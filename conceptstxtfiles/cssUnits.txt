@@ -1,0 +1,16 @@
+absolute units : 
+   fixed units like px,cm,mm,pt,inches 
+relative units : 
+   Units which change with the screen or with parent size
+   most important are : 
+   (em -> element)
+        em = 4em => indicates increase size of font by four times than the normal for size
+        rem = 4rem => here r->root element 
+        i.e size of font is 4 times the root element.
+        vh -> 4vh -> view hight indicates the hight based viewport
+        vw -> 4wh -> view width indicates the width based on the view port
+        view port is the view for the webpage i.e from top to botton for vh
+        and left to right for wh 
+
+
+

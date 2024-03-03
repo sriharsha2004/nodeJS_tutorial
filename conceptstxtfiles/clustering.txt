@@ -1,0 +1,36 @@
+clustering is a concept used to increase the performace of the server using which the server, can
+handle requests in a faster manner.
+In the clustering concept we create a virtual copy of server , which is same as original server,
+which it can also handle requests of users .
+
+hence by using clustering we are creating virtual servers ,hence all the servers can handle the 
+requests at the same time ,
+
+But their is a limit for creating virtual servers, it depends on our configuration of cpu like 
+RAM,processor (i3,i5,i7 ) etc...
+Inorder to know the number of virtual servers our system is capable of creating 
+we use additional module known as os module
+Usually we use the cluster module to create a cluster .
+os module to know the number of servers or cpus we can create .
+Ususlly websites like amazon create hundreds of virtual servers to increase the performance.
+
+implementation :
+Refer onlineshoppingapp
+reuquire("cluster") module .
+noofcpu = require("os").cpus.length()
+
+if(cluster.isMaster){
+    for(int i=0;i<noofCPu;i++){
+        cluster.fork(); //used to create virtual server for the master server.
+    }
+}else{
+    //server related code
+    //app.use ....
+    ..
+}
+
+Note: When ever we create a copy , we only create a copy only for original server, 
+only if cluster.isMaster we create copy for that
+when ever a copy is created again that server copy will execute all statements from starting of
+server.js , this time it will execute the else part ,as it is not master.
+Same repeats for all the virtual servvers or cpus;

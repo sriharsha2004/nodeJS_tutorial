@@ -1,0 +1,25 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob NinJa | <%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+
+    
+    <!-- Note : when we include css in an external file then it will not be added 
+        and when we try to inspect and see it gives 404 error for css
+        its because the server will prevent the external static files from being rendered
+        to protect the files
+        So inorder to include the static files like images , videos and other static content
+        like styles we include them in sepearte folder and specify the folder name in app.js
+        file inside the middleware
+        and need to use a seperate middle ware 
+        
+        check appwithejs.js
+    -->
+    
+    <!-- While specifying path of styles.css we need not tell the path as we have already 
+    specified in appwithejs file that we will have the static files in public folder
+    Hence when it sees the static file like an image or video it automatically gives the
+default path i.e /public for all static files-->
+
+</head>

@@ -1,0 +1,7 @@
+buffering is a concept used to prevent the server to request the Database server again and againg,
+for eg :
+When the client requests the server , the server will get all the products from DB, and places a 
+copy into them into a buffer or storagee in the server, and sends the data to the client.
+hence when ever later if again the client requests for 
+the data to the server , the server rather than requesting the DB server again it will get the 
+data from the buffer and gives the data to back to the user.

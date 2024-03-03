@@ -1,0 +1,85 @@
+A jwt token is mainly used for authorization purpose 
+It is similar to sessions and cookies concept
+In JWT tokens (json web tokens) , once the client sends the request to the server , 
+then the server creates a JWT token and then sends back the token to the user .
+
+The only diffrence between sessions and JWT tokens is ,
+sessions will store the cookie in the data base ,
+where as in JWT , It doesnt store anything in the database . 
+
+
+This JWT token mainly contains three parts :
+JWT header
+JWT payload
+JWT signature
+
+In the JWT header section we mainly needs to include the algorithm which we need to use to 
+encrypt the data . THe algorithm can be HS256 , HS384 etc.. for reference visit jwt.io 
+
+And the second part is JWT payload , which contains the users data(JSON data)
+in the encryted format which is encrypted using the encyption algorithm specified in the
+header section .
+
+eg: payload section :
+    {
+        "sub": "1234567890",
+        "name": "John Doe",
+        "iat": 1516239022
+    }
+In this iat specifies Issued at time(iat) it specifies the time at which the jwt token is created.
+Similarly we can also include Expired at time(eat) which specifies the time at which we need
+the JWT token to be expired .
+
+And the last section is the Signature , which is used to check whether the user requested again 
+is authorized or not , when user requests the server he gives his JWT token , 
+then this section will decrypt the the header part and payload part using the algorithms 
+specified in the Signature section and compares the decrypted format with the Third part of the
+ token
+ Genrally this decytion and encryption takes place using the secret specified in the signature 
+ section 
+
+ Eg:
+ Given is the JWT token
+ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+ eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+ This token is for 
+
+HEADER:ALGORITHM & TOKEN TYPE
+HS256
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+
+PAYLOAD:DATA
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "iat": 1516239022
+}
+
+
+VERIFY SIGNATURE
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  your-256-bit-secret //represnts the secret
+)
+
+
+In the token specified above the part till the first dot is the encrypted for the header
+section , i.e when we change the alg in header automatically it changes the  header part 
+accordingly in the token .
+
+Similarly the context from first to second dot is the encrypted format of the data (JSON) data
+of user (payload) which has been encrypted using the secret specified in the signature 
+section.
+
+At last the text from second dot to last dot , 
+the last part is the token with which it actually authorizses the user.It is the encoded version of
+first two parts of the tokens.
+Hence when ever the user requests later the first two parts are encoded and then compared 
+with the third part if same then valid sugnature else invlid signature.

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <-- from ejs -->
+    <!-- <title>Index.html | <%= title %></title>
+</head> --> 
+  <%- include("../Components/header.ejs")%>
+<body>
+
+  <!-- for writing if statemtns or foe loops use this approach  (include in ejs tags)-->
+    <!-- <% const name = "harsha" %> -->
+
+    <h1>Welcome page</h1>
+    <!-- below statements takes the value of name from above so we need to use '=' within the  -->
+    <!-- ejs tag -->
+    <!-- <p><%= name %></p> -->
+
+    <!-- This nav bar is common in all pages means if we later whats to add new link we need
+    to go to every page and change insterd we write the program only once and render in 
+  all the pages where ever we want the nav bar
+  Same applies to footer tag in all pages -->
+  <!-- Now we include all the files these components in a components folder -->
+    <!-- <nav>
+        <div class="site-title">
+          <a href="/"><h1>Blog Ninja</h1></a>
+          <p>A Net Ninja Site</p>
+        </div>
+        <ul>
+          <li><a href="/">Blogs</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/blogs/create">New Blog</a></li>
+        </ul>
+      </nav> -->
+
+    <!-- use below line for reusability rather than including nav in every file -->
+      <!-- <%= include("../Components/nav.ejs") %> -->
+      <!-- when we use above line it renders html in the form of string so use as below-->
+      
+      <!-- for including components we need to use <%- %> -->
+      <%- include("../Components/nav.ejs") %>
+
+      <!-- notice that we places <% %> for if , for ,while llopps -->
+      <!-- for replacing any value in tag we used <%= %> -->
+      <div id="hi"></div>
+      <div class="blogs content">
+        <h2>All Blogs</h2>
+          <% if (blogs.length >= 1) { %>
+            <% blogs.forEach(blog => { %>
+              <!-- this a tag is given to every blog
+              once we click on the blog it shows the data of the blog along with delete button
+            which helps the user to delete the blog 
+          hence inorder to do that we need to enclose every blog with href of display/<id>
+            here id corresponds unique id given by database to every document(blog)  -->
+            <!-- here blog._id is a route parameter which means that the route paramenter
+            is dynamic which changes (can be int/string )-->
+              <a class="single"  href="/display/<%= blog._id %>">
+                <h3><%= blog.title %></h3>
+                <p><%= blog.snippet %></p>
+              </a>
+            <% }) %>
+          <% } else { %>
+            <h3>No blogs found</h3>
+          <% } %>
+      </div>
+
+      <%- include("../Components/footer.ejs") %>
+      <!-- <footer>
+        Copyright &copy; Blog Ninja 2023
+      </footer> -->
+</body>
+</html>

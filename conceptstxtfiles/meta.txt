@@ -1,0 +1,4 @@
+meta tag is the tag used in the starting of of html page
+This meta tag is usde to give information about webpage like whats the desription,keywords and other
+information about our project or the device length.
+

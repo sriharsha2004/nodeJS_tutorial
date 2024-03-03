@@ -1,0 +1,14 @@
+mvc stands for models , views and contollers 
+a controller acts as an intermediate between models and views
+
+when we see appwithejs.js fiile we can see that their are several routes in it and also it will become
+more difficult later to add new routes 
+it becomes more fussy , hence we include all the request handlers in seperate folder componenets say 
+(controllers)
+here we create a folder componenets and make file blogcontollers.js which contains all the request 
+handlers to provide the response to user
+
+and also we are using a folder know as expressRouter which contains all the routes
+expressRouter is used when all the routes contain the common route then insteard of specifying the 
+same route again and again and also if we want to change the route we can replace only one 
+time insteard of again and again.
