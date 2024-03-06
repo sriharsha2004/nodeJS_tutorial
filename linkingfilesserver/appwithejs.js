@@ -115,17 +115,27 @@ mongoose.connect(dbURI)
 
 // Their are also third party middlewares which are present in npm can be used using 
 // npm install
-// To print data about the request we can use a third party middleware known as morgan
 // 
 
 app.use(express.static('public'))
-app.use(morgan("dev"))
-
-// middle ware which parses data in post request in the form of object
-app.use(express.urlencoded({extended : true}))
 
 // This specifies that all the files present inside the public folder are made static 
 // i.e avaible for all pages
+app.use(morgan("dev"))
+// To print data about the request we can use a third party middleware known as morgan
+
+// middle ware which parses data in post request in the form of object
+app.use(express.urlencoded({extended : true}))
+express.urlencoded({extended: true})
+
+// express.urlencoded is a middleware is primarily used to parse incoming request bodies with URL-encoded payloads. When a client submits a form from a web page, the data is typically sent in the URL-encoded format. URL encoding converts special characters into a format that can be transmitted over the internet, such as replacing spaces with %20.
+
+// The extended option in express.urlencoded() determines whether to use the built-in querystring library (extended: false) or the qs library (extended: true) to parse the URL-encoded data. The qs library provides extended parsing capabilities, allowing for complex objects and arrays to be parsed from the URL-encoded data.
+
+// For example, with extended: true, the URL-encoded data like key=value&key2=value2 can be parsed into a JavaScript object where keys and values represent form fields and their values respectively.
+
+
+
 
 // we can create a nerw document in the collection which has structure of schems defined in
 //  model.js , Hence to create a new document we define an instance of schema in model.js
